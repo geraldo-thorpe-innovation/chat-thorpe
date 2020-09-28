@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="BackCover" width="55.617" height="52" viewBox="0 0 55.617 52">
+    <defs>
+        <style>
+            .cls-1{fill:#57400d}
+        </style>
+    </defs>
+    <g id="Profile_pic" data-name="Profile pic">
+        <circle id="Ellipse_68" cx="26" cy="26" r="26" class="cls-1" data-name="Ellipse 68" transform="translate(1.653)"/>
+        <path id="ear_" d="M8.052 11.938C11.642 11.938 13 7.762 13 5s-2.91-5-6.5-5S0 2.239 0 5s4.462 6.937 8.052 6.938z" class="cls-1" transform="rotate(-134.03 27.528 -.516)"/>
+        <path id="ear_2" d="M8.052-1.937C11.642-1.937 13 2.239 13 5s-2.91 5-6.5 5S0 7.761 0 5s4.462-6.937 8.052-6.937z" class="cls-1" data-name="ear_" transform="rotate(-45.97 14.807 4.344)"/>
+    </g>
+</svg>
