@@ -4,11 +4,11 @@ import './TextContainer.css';
 const users = [
   {
     id: 1,
-    user: 'Geraldo'
+    user: 'Geraldo Domingos'
   },
   {
-    id: 2,
-    user: 'Geraldo2'
+    id: 1,
+    user: 'Neto Domingos'
   },
   {
     id: 3,

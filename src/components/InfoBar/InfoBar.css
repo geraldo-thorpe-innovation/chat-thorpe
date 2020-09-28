@@ -3,10 +3,8 @@
   align-items: center;
   justify-content: space-between;
   background: #FFF;
-  border-radius: 4px 4px 0 0;
-  height: 60px;
-  /* border: 1px solid red; */
-  border-bottom: 1px solid #EBE9E3;
+  height: 100px;
+  border-bottom: 1px solid #ECEBE5;
   width: 100%;
 }
 
@@ -14,12 +12,16 @@
   flex: 0.5;
   display: flex;
   align-items: center;
-  margin-left: 5%;
+  margin: 30px 0 30px 20px;
   color: white;
 }
 
 .leftInnerContainer h3 {
-  color: #976500
+  color:#AF8140;
+  margin-left: 20px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 900;
+
 }
 
 .rightInnerContainer {

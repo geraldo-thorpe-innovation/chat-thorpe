@@ -1,7 +1,7 @@
 .messageBox {
   background: #F3F3F3;
-  border-radius: 20px;
-  padding: 5px 20px;
+  border-radius: 4px;
+  padding: 0 10px;
   color: white;
   display: inline-block;
   max-width: 80%;
@@ -30,7 +30,7 @@
   display: flex;
   align-items: center;
   font-family: Helvetica;
-  color: #828282;
+  color: red;
   letter-spacing: 0.3px;
 }
 
@@ -52,16 +52,22 @@
 
 .colorWhite {
   color: white;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 500;
 }
 
 .colorDark {
   color: #353535;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 500;
+  color: #57400D;
 }
 
 .backgroundBlue {
-  background: #2979FF;
+  background: #57400D;
 }
 
 .backgroundLight {
-  background: #F3F3F3;
+  background: #FFF;
+  border: 1px solid #9E9073;
 }
