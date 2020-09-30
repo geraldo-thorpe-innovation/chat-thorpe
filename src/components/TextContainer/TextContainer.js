@@ -87,11 +87,49 @@ const users = [
     lastText: 'Lorem ipsum dolor sit amet',
     newsMessages: '0'
   },
+  {
+    id: 9,
+    user: 'Maicom',
+    image: 'default',
+    type: 'provider',
+    lastTextTime: '16:51',
+    lastText: 'Lorem ipsum dolor sit amet',
+    newsMessages: '0'
+  },
+  {
+    id: 9,
+    user: 'Maicom',
+    image: 'default',
+    type: 'provider',
+    lastTextTime: '16:51',
+    lastText: 'Lorem ipsum dolor sit amet',
+    newsMessages: '0'
+  },
+  {
+    id: 9,
+    user: 'Maicom',
+    image: 'default',
+    type: 'provider',
+    lastTextTime: '16:51',
+    lastText: 'Lorem ipsum dolor sit amet',
+    newsMessages: '0'
+  },
+  {
+    id: 9,
+    user: 'Maicom',
+    image: 'default',
+    type: 'provider',
+    lastTextTime: '16:51',
+    lastText: 'Lorem ipsum dolor sit amet',
+    newsMessages: '0'
+  },
 ]
 
 const TextContainer = () => (
-  <div className="textContainer">
+
+  <div className="list-chats">
     <div className='list-rooms'>
+        
     {
       users.map(user => (
         <a href={`/chat?name=${user.user}&room=${user.id}`} className='room'>
@@ -112,7 +150,6 @@ const TextContainer = () => (
               </div>
             </div>
           </div>
-
         </a>
       ))
     }
