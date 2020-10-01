@@ -5,6 +5,8 @@ import Join from './components/Join/Join';
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+// async function isLoggedUser
+
 const App = () => {
   return (
     <Router>
