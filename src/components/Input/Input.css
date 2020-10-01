@@ -37,3 +37,8 @@ input:focus, textarea:focus, select:focus{
   border-radius: 50%;
   height: 55px;
 }
+
+.sendButton:hover {
+  background: #c79108;
+  cursor: pointer;
+}

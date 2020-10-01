@@ -34,3 +34,52 @@
 .onlineIcon {
   margin-right: 5%;
 }
+
+.header-chat{
+  display: flex;
+  z-index: 2;
+  padding: 20px 40px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100px;
+  box-shadow: 0 4px 4px 0 rgba(87, 64, 16, 0.1);
+}
+
+.header-chat .pic-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.header-chat .pic-header .pic-user{
+  position: relative;
+  z-index: 2;
+  top: 0px;
+}
+
+.header-chat .nome-header{
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 800;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: 0.36px;
+  text-align: left;
+  color: #af8140;
+}
+
+.back-cover{
+  position: absolute;
+  z-index: 1;
+}
+
+.pic-user{
+  position: relative;
+  z-index: 2;
+  top: 4px;
+}
