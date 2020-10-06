@@ -1,8 +1,11 @@
 {
   "name": "project_chat_application",
   "version": "0.1.0",
+  "proxy": "https://chat-hom.miauuapi.com/",
   "private": true,
   "dependencies": {
+    "axios": "^0.20.0",
+    "date-fns": "^2.16.1",
     "expo": "^38.0.0",
     "query-string": "^6.8.2",
     "react": "^16.9.0",
