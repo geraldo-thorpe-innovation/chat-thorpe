@@ -6,6 +6,7 @@ import TextContainer from '../TextContainer/TextContainer';
 import Messages from '../Messages/Messages';
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
+import NoChatComponent from '../NoChatComponent/NoChat'
 
 import './Chat.css';
 
@@ -17,6 +18,7 @@ const Chat = ({ location }) => {
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const [ noChat, setNoChat ] = useState(true)
   const ENDPOINT = 'https://chat-hom.miauuapi.com/';
 
   useEffect(() => {
@@ -31,11 +33,13 @@ const Chat = ({ location }) => {
     })
 
     setRoom(room);
-    setName(name)
+    // setName(name)
 
     socket.emit('join', { name, room }, (error) => {
       if(error) {
-        alert(error);
+        setNoChat(true)
+      } else {
+        setNoChat(false)
       }
     });
 
@@ -46,12 +50,18 @@ const Chat = ({ location }) => {
     await Axios.get(`https://cors-anywhere.herokuapp.com/${ENDPOINT}?room=${room}`)
       .then(resp => {
         setMessages(resp.data);
+        verifyUser(resp.data)
       }).catch(error => {
         console.log('erro1: ', error)
       }
     )
   }
   
+  function verifyUser(messagesRecived){
+    const nameFiltred = messagesRecived.filter((element) => ( element.name !== 'miauuteam' ))
+    setName(nameFiltred[0].name)
+  }
+
   useEffect(() => {
     socket.on('message', message => {
       setMessages(messages => [ ...messages, message ]);
@@ -60,9 +70,6 @@ const Chat = ({ location }) => {
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });
-
-    console.log(users);
-
   }, []);
 
   const sendMessage = (event) => {
@@ -79,14 +86,22 @@ const Chat = ({ location }) => {
         <TextContainer users={users}/>
       </div>
       <div className="container">
-          <InfoBar name={name} />
-          <Messages messages={messages} name={name} />
-          <div className='InputBox'>
-            <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
-          </div>
+        {
+          noChat ? (
+            <NoChatComponent/>
+          ) : (
+            <>
+              <InfoBar name={name} />
+              <Messages messages={messages} name={name} />
+              <div className='InputBox'>
+                <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+              </div>
+            </>
+          )
+        }
       </div>
     </div>
-  );
+  )
 }
 
 export default Chat;

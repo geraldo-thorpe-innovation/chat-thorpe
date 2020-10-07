@@ -1,0 +1,20 @@
+.externDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.titleNoChat {
+    font-size: 25px;
+    text-align: center;
+    color: #57400d;
+    font-weight: 600;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.image {
+    align-items: center;
+    justify-content: center;
+}

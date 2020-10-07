@@ -7,7 +7,6 @@ import './Message/Message.css'
 import Message from './Message/Message';
 
 const Messages = ({ messages }) => {
-  console.log(messages);
   return(
     <ScrollToBottom className="messages">
       {
@@ -21,11 +20,20 @@ const Messages = ({ messages }) => {
               </div>
             </div>
             ) : (
-              <div className="messageContainer justifyStart">
-                <div className="messageBox backgroundLight">
-                  <p className="messageText colorDark">{message.message ? message.message : message.text}</p>
-                </div>
-              </div>
+              <>
+                {
+                  message.user == 'admin' ? (
+                    <>
+                    </>
+                  ) : (
+                    <div className="messageContainer justifyStart">
+                      <div className="messageBox backgroundLight">
+                        <p className="messageText colorDark">{message.message ? message.message : message.text}</p>
+                      </div>
+                    </div>
+                  )
+                }
+              </>
             )
           }
           </>
