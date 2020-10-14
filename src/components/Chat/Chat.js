@@ -14,7 +14,6 @@ let socket;
 
 const Chat = ({ location }) => {
   const [name, setName] = useState('');
-  const [room, setRoom] = useState('');
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
@@ -26,15 +25,11 @@ const Chat = ({ location }) => {
     getChatHistory(room)
 
     socket = io(ENDPOINT, {
-      'reconnection': true,
-      'reconnectionDelay': 500,
-	    'reconnectionAttempts': Infinity, 
-	    'transports': ['websocket'],     
+      query: {
+        auth: 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0',
+        backoffice: true
+      }
     })
-
-    setRoom(room);
-    // setName(name)
-
     socket.emit('join', { name, room }, (error) => {
       if(error) {
         setNoChat(true)
@@ -42,17 +37,17 @@ const Chat = ({ location }) => {
         setNoChat(false)
       }
     });
-
-
   }, [ENDPOINT, location.search]);
 
   async function getChatHistory(room){
-    await Axios.get(`https://cors-anywhere.herokuapp.com/${ENDPOINT}?room=${room}`)
+    await Axios.get(`https://cors-anywhere.herokuapp.com/${ENDPOINT}admin/room/${room}`, {
+      headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
+    })
       .then(resp => {
         setMessages(resp.data);
         verifyUser(resp.data)
       }).catch(error => {
-        console.log('erro1: ', error)
+        console.log('erro1: ', error.request)
       }
     )
   }
@@ -66,7 +61,6 @@ const Chat = ({ location }) => {
     socket.on('message', message => {
       setMessages(messages => [ ...messages, message ]);
     });
-
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });
@@ -74,7 +68,6 @@ const Chat = ({ location }) => {
 
   const sendMessage = (event) => {
     event.preventDefault();
-
     if(message) {
       socket.emit('sendMessage', message, () => setMessage(''));
     }

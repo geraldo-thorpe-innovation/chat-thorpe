@@ -4,16 +4,15 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 
 import './Messages.css';
 import './Message/Message.css'
-import Message from './Message/Message';
 
 const Messages = ({ messages }) => {
   return(
     <ScrollToBottom className="messages">
       {
         messages.map(message => (
-          <>
+          <div key={message._id}>
           {
-            message.name == 'miauuteam' || message.user == 'miauuteam' ? (
+            message.name === 'miauuteam' || message.user === 'miauuteam' ? (
             <div className="messageContainer justifyEnd">
               <div className="messageBox backgroundBlue">
                 <p className="messageText colorWhite">{message.message ? message.message : message.text}</p>
@@ -22,7 +21,7 @@ const Messages = ({ messages }) => {
             ) : (
               <>
                 {
-                  message.user == 'admin' ? (
+                  message.user === 'admin' ? (
                     <>
                     </>
                   ) : (
@@ -36,7 +35,7 @@ const Messages = ({ messages }) => {
               </>
             )
           }
-          </>
+          </div>
         ))
       }
     </ScrollToBottom>

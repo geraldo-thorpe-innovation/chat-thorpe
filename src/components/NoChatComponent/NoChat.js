@@ -9,6 +9,7 @@ export default function NoChat() {
           <img
             className="image"
             src={NoChatImage}
+            alt='noChat'
           />
           <h1 className='titleNoChat'>Você não tem conversas abertas!</h1>
         </div>
