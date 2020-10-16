@@ -22,14 +22,14 @@ const Chat = ({ location }) => {
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
-    getChatHistory(room)
-
+    
     socket = io(ENDPOINT, {
       query: {
         auth: 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0',
         backoffice: true
       }
     })
+    
     socket.emit('join', { name, room }, (error) => {
       if(error) {
         setNoChat(true)
@@ -37,20 +37,21 @@ const Chat = ({ location }) => {
         setNoChat(false)
       }
     });
-  }, [ENDPOINT, location.search]);
-
-  async function getChatHistory(room){
-    await Axios.get(`https://cors-anywhere.herokuapp.com/${ENDPOINT}admin/room/${room}`, {
-      headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
-    })
+    async function getChatHistory(room){
+      await Axios.get(`https://cors-anywhere.herokuapp.com/${ENDPOINT}admin/room/${room}`, {
+        headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
+      })
       .then(resp => {
         setMessages(resp.data);
         verifyUser(resp.data)
       }).catch(error => {
         console.log('erro1: ', error.request)
       }
-    )
-  }
+      )
+    }
+    getChatHistory(room)
+  }, [ENDPOINT, location.search]);
+
   
   function verifyUser(messagesRecived){
     const nameFiltred = messagesRecived.filter((element) => ( element.name !== 'miauuteam' ))

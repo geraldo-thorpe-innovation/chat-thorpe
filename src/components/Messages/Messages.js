@@ -10,7 +10,7 @@ const Messages = ({ messages }) => {
     <ScrollToBottom className="messages">
       {
         messages.map(message => (
-          <div key={message._id}>
+          <div key={message._id} className="teste">
           {
             message.name === 'miauuteam' || message.user === 'miauuteam' ? (
             <div className="messageContainer justifyEnd">

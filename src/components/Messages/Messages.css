@@ -1,6 +1,13 @@
 .messages {
-  padding: 5% 0;
   overflow: auto;
   flex: auto;
   background-color: #F0EFEA;
+}
+
+.teste:last-child{
+  margin-bottom: 1rem;
+}
+
+.teste:first-child{
+  margin-top: 1rem;
 }
