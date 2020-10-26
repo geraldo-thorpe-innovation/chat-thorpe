@@ -39,7 +39,7 @@ const Chat = ({ location }) => {
       }
     });
     async function getChatHistory(room){
-      await Axios.get(`${ENDPOINT}admin/room/${room}`, {
+      await Axios.get(`https://cors-anywhere.herokuapp.com/${ENDPOINT}admin/room/${room}`, {
         headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
       })
       .then(resp => {

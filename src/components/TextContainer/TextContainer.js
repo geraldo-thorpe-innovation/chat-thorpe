@@ -19,7 +19,7 @@ const TextContainer = () => {
   }, [])
 
   const getRooms = async () => {
-    await Axios.get(`${ENDPOINT}rooms`, {
+    await Axios.get(`https://cors-anywhere.herokuapp.com/${ENDPOINT}rooms`, {
       headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
       }).then(resp => {
 
