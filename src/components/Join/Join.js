@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import './Join.css';
 
 export default function SignIn() {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
+
+  const history = useHistory()
+
+  function verifyUser(e){
+    if(name === '' || room === '' || name !== 'chatmiauu' || room !== 'Ch@tMi@uu2021'){
+      alert('erro no login')
+    } else {
+      history.push('/chat')
+    }
+  }
 
   return (
     <div className="joinOuterContainer">
@@ -27,7 +37,7 @@ export default function SignIn() {
             onChange={(event) => setRoom(event.target.value)} 
           />
         </div>
-        <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat`}>
+        <Link onClick={() => verifyUser()}>
           <button className={'button mt-20'} type="submit">Sign In</button>
         </Link>
       </div>

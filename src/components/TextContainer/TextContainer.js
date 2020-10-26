@@ -8,20 +8,27 @@ import bgProvider from './Assets/bg-provider.svg'
 const TextContainer = () => {
   const [ user, setUser ] = useState([])
   const [ loading, setLoading ] = useState(true)
-  const ENDPOINT = 'https://chat-hom.miauuapi.com/';
+  // const ENDPOINT = 'https://chat-hom.miauuapi.com/';
+  const ENDPOINT = `https://chat.miauuapi.com/`
 
   useEffect(() => {
-    getRooms()
+    // const intervalId = setInterval(() => {
+      getRooms()
+    // }, 5000);
+    // return () => clearInterval(intervalId)
   }, [])
 
   const getRooms = async () => {
-    await Axios.get(`https://cors-anywhere.herokuapp.com/${ENDPOINT}rooms`, {
+    await Axios.get(`${ENDPOINT}rooms`, {
       headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
       }).then(resp => {
+
+        console.log(resp.data);
+
         setUser(resp.data);
         setLoading(false)
       }).catch(error => {
-        console.log('erro1: ', error)
+        console.log('erro1: ', error.request)
       }
     )
   }
@@ -45,20 +52,20 @@ const TextContainer = () => {
                       <img src={bgProvider} className='back-cover' alt='user' />
                     </div>
                     <div className='text-list'>
-                      <div className='nome' >
+                      <div className='nome'>
                         {user.name} 
                         <span className='data'>{format(parseISO(user.dateLastMessage), 'HH:mm')}</span>
                       </div>
                       <div className='texto'>
                         {user.lastText}
-                        {
+                        {/* {
                           user.unreadMessages === 0 ? (
                             <>
                             </>
                           ) : (
                             <span className='badge color-badge'>{user.unreadMessages}</span>
                           )
-                        }
+                        } */}
                       </div>
                     </div>
                   </div>

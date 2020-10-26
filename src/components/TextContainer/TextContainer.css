@@ -172,6 +172,7 @@ a{
   letter-spacing: normal;
   text-align: center;
   color: #ffffff;
+  align-self: flex-end;
   padding: 0px 4px;
   border-radius: 3px;
 }
