@@ -11,3 +11,21 @@
 .teste:first-child{
   margin-top: 1rem;
 }
+
+.hourmessageUser {
+  margin-left: 10px;
+  color: #57400d;
+  text-align: right;
+}
+
+.hourmessageRecived {
+  margin-right: 10px;
+  color: #57400d;
+  text-align: left;
+}
+
+.messageTextHour {
+  margin-top: 10px;
+  font-size: 10px;
+  font-weight: bold;
+}

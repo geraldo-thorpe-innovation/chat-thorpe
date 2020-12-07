@@ -4,6 +4,8 @@ import Axios from 'axios'
 import { format, parseISO } from 'date-fns'
 import imgDefault from './Assets/user.svg'
 import bgProvider from './Assets/bg-provider.svg'
+import bgCustomer from './Assets/bg-customer.svg'
+import moment from 'moment'
 
 const TextContainer = () => {
   const [ user, setUser ] = useState([])
@@ -23,14 +25,18 @@ const TextContainer = () => {
       headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
       }).then(resp => {
 
-        console.log(resp.data);
-
+        var rooms = resp.data
+        rooms.sort(orderRooms)
         setUser(resp.data);
         setLoading(false)
       }).catch(error => {
         console.log('erro1: ', error.request)
       }
     )
+  }
+
+  function orderRooms(a, b){
+    return new Date(b.dateLastMessage) - new Date(a.dateLastMessage);
   }
 
   return(
@@ -49,7 +55,13 @@ const TextContainer = () => {
                   <div className='item-chat' id='item-chat'>
                     <div className='pic-list'>
                       <img src={imgDefault} className='pic-user img-user' alt='user' />
-                      <img src={bgProvider} className='back-cover' alt='user' />
+                      {
+                        user.providerId ? (
+                          <img src={bgProvider} className='back-cover' alt='user' />
+                        ) : ( 
+                          <img src={bgCustomer} className='back-cover' alt='user' />
+                        )
+                      }
                     </div>
                     <div className='text-list'>
                       <div className='nome'>
@@ -58,14 +70,7 @@ const TextContainer = () => {
                       </div>
                       <div className='texto'>
                         {user.lastText}
-                        {/* {
-                          user.unreadMessages === 0 ? (
-                            <>
-                            </>
-                          ) : (
-                            <span className='badge color-badge'>{user.unreadMessages}</span>
-                          )
-                        } */}
+                        <span className='data'>{format(parseISO(user.dateLastMessage), 'dd/MM/yyyy')}</span>
                       </div>
                     </div>
                   </div>
