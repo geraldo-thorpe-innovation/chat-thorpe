@@ -25,7 +25,24 @@
 }
 
 .messageTextHour {
-  margin-top: 10px;
+  margin-top: 0px;
   font-size: 10px;
   font-weight: bold;
+  text-align: right;
+}
+
+.ballon-data-text{
+  flex-direction: column;
+}
+
+.data-text{
+  margin-bottom: 10px;
+  font-size: 12px;
+  margin-left: 7px;
+  align-self: center;
+}
+
+.hour-text{
+  padding: 0px;
+  text-align: left;
 }

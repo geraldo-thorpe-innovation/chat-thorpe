@@ -136,11 +136,24 @@ a{
   color: #af8140;
 }
 
+.text-list .hora{
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  opacity: 0.8;
+  font-size: 11px;
+  font-stretch: normal;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #57400d;
+}
+
 .text-list .data{
   font-family: 'M PLUS Rounded 1c', sans-serif;
   opacity: 0.8;
-  font-size: 10px;
-  font-weight: 800;
+  font-size: 11px;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.5;

@@ -18,11 +18,12 @@ const Messages = ({ messages }) => {
           {
             message.name === 'miauuteam' || message.user === 'miauuteam' ? (
             <div className="messageContainer justifyEnd">
-              <div className="messageBox backgroundBlue">
+              <p className='hourmessageUser data-text'>{format(parseISO(message.createdAt), 'dd/MM/yyyy')}</p>
+              <div className="messageBox-user backgroundBlue">
                 <p className="messageText colorWhite">{message.message ? message.message : message.text}</p>
                 <p className="messageTextHour hourmessageUser colorWhite">{format(parseISO(message.createdAt), 'HH:mm')}</p>
               </div>
-            <p className='hourmessageUser'>{format(parseISO(message.createdAt), 'dd/MM/yyyy')}</p>
+            
             </div>
             ) : (
               <>
@@ -31,10 +32,10 @@ const Messages = ({ messages }) => {
                     <>
                     </>
                   ) : (
-                    <div className="messageContainer justifyStart">
+                    <div className="messageContainer justifyStart ballon-data-text">
                       {
                         message.createdAt ? (
-                          <p className='hourmessageRecived'>{format(parseISO(message.createdAt), 'dd/MM/yyyy')}</p>
+                          <p className='hourmessageRecived data-text'>{format(parseISO(message.createdAt), 'dd/MM/yyyy')}</p>
                         ) : (
                           <>
                           </>
@@ -44,7 +45,7 @@ const Messages = ({ messages }) => {
                         <p className="messageText colorDark">{message.message ? message.message : message.text}</p>
                         {
                           message.createdAt ? (
-                            <p className='hourmessageRecived messageTextHour'>{format(parseISO(message.createdAt), 'HH:mm')}</p>
+                            <p className='hourmessageRecived messageTextHour hour-text'>{format(parseISO(message.createdAt), 'HH:mm')}</p>
                           ) : (
                             <>
                             </>

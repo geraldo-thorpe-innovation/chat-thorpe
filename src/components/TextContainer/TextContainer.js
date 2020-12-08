@@ -66,7 +66,7 @@ const TextContainer = () => {
                     <div className='text-list'>
                       <div className='nome'>
                         {user.name} 
-                        <span className='data'>{format(parseISO(user.dateLastMessage), 'HH:mm')}</span>
+                        <span className='hora'>{format(parseISO(user.dateLastMessage), 'HH:mm')}</span>
                       </div>
                       <div className='texto'>
                         {user.lastText}
