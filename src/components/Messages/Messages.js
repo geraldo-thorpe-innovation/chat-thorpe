@@ -4,11 +4,20 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 
 import './Messages.css';
 import './Message/Message.css'
-import { format, parseISO } from 'date-fns'
+import { format, parseISO, getHours } from 'date-fns'
 
 const Messages = ({ messages }) => {
 
-  console.log(messages);
+  function getHours() {
+    var date = new Date()
+    var test = date.toLocaleTimeString('pt-BR')
+
+    let format11 = format(date, 'HH:mm')
+  
+
+    return format11;
+  }
+
 
   return(
     <ScrollToBottom className="messages">
@@ -18,10 +27,23 @@ const Messages = ({ messages }) => {
           {
             message.name === 'miauuteam' || message.user === 'miauuteam' ? (
             <div className="messageContainer justifyEnd">
-              <p className='hourmessageUser data-text'>{format(parseISO(message.createdAt), 'dd/MM/yyyy')}</p>
+              {
+                message.createdAt ? (
+                  <p className='hourmessageUser data-text'>{format(parseISO(message.createdAt), 'dd/MM/yyyy')}</p>
+                ) : (
+                  <>
+                  </>
+                )
+              }
               <div className="messageBox-user backgroundBlue">
                 <p className="messageText colorWhite">{message.message ? message.message : message.text}</p>
-                <p className="messageTextHour hourmessageUser colorWhite">{format(parseISO(message.createdAt), 'HH:mm')}</p>
+                {
+                  message.createdAt ? (
+                    <p className="messageTextHour hourmessageUser colorWhite">{format(parseISO(message.createdAt), 'HH:mm')}</p>
+                  ) : (
+                    <p className="messageTextHour hourmessageUser colorWhite">Agora</p>
+                  )
+                }
               </div>
             
             </div>
@@ -47,8 +69,7 @@ const Messages = ({ messages }) => {
                           message.createdAt ? (
                             <p className='hourmessageRecived messageTextHour hour-text'>{format(parseISO(message.createdAt), 'HH:mm')}</p>
                           ) : (
-                            <>
-                            </>
+                            <p className='hourmessageRecived messageTextHour hour-text'>Agora</p>
                           )
                         }
                       </div>
