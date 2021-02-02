@@ -10,14 +10,13 @@ import moment from 'moment'
 const TextContainer = () => {
   const [ user, setUser ] = useState([])
   const [ loading, setLoading ] = useState(true)
-  // const ENDPOINT = 'https://chat-hom.miauuapi.com/';
   const ENDPOINT = `https://chat.miauuapi.com/`
 
   useEffect(() => {
-    // const intervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
       getRooms()
-    // }, 5000);
-    // return () => clearInterval(intervalId)
+    }, 5000);
+    return () => clearInterval(intervalId)
   }, [])
 
   const getRooms = async () => {
