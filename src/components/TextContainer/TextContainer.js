@@ -13,19 +13,23 @@ const TextContainer = () => {
   const ENDPOINT = `https://chat.miauuapi.com/`
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    // const intervalId = setInterval(() => {
       getRooms()
-    }, 5000);
-    return () => clearInterval(intervalId)
+    // }, 5000);
+    // return () => clearInterval(intervalId)
   }, [])
 
   const getRooms = async () => {
-    await Axios.get(`https://cors-anywhere.herokuapp.com/${ENDPOINT}rooms`, {
+    await Axios.get(`${ENDPOINT}rooms`, {
       headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
       }).then(resp => {
 
-        var rooms = resp.data
-        rooms.sort(orderRooms)
+        var rooms = resp.data.sort((a, b) => new Date(b.dateLastMessage) - new Date(a.dateLastMessage))
+        // rooms.sort(orderRooms)
+
+        console.log(rooms);
+
+
         setUser(resp.data);
         setLoading(false)
       }).catch(error => {
