@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './TextContainer.css';
-import Axios from 'axios'
+
 import { format, parseISO } from 'date-fns'
 import imgDefault from './Assets/user.svg'
 import bgProvider from './Assets/bg-provider.svg'
 import bgCustomer from './Assets/bg-customer.svg'
 import moment from 'moment'
+
+import Api from '../../Services/API'
 
 const TextContainer = () => {
   const [ user, setUser ] = useState([])
@@ -20,16 +22,10 @@ const TextContainer = () => {
   }, [])
 
   const getRooms = async () => {
-    await Axios.get(`${ENDPOINT}rooms`, {
-      headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
-      }).then(resp => {
-
+    await Api.get(`rooms`)
+      .then(resp => {
         var rooms = resp.data.sort((a, b) => new Date(b.dateLastMessage) - new Date(a.dateLastMessage))
-        // rooms.sort(orderRooms)
-
         console.log(rooms);
-
-
         setUser(resp.data);
         setLoading(false)
       }).catch(error => {
