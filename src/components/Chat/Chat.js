@@ -38,16 +38,15 @@ const Chat = ({ location }) => {
         setNoChat(false)
       }
     });
-
     async function getChatHistory(room){
-      await Axios.get(`${ENDPOINT}admin/room/${room}`, {
+      await Axios.get(`https://cors-anywhere.herokuapp.com/${ENDPOINT}admin/room/${room}`, {
         headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
       })
       .then(resp => {
         setMessages(resp.data);
         verifyUser(resp.data)
       }).catch(error => {
-        // console.log('erro12: ', error.request)
+        console.log('erro1: ', error.request)
       }
       )
     }
