@@ -10,32 +10,36 @@ import moment from 'moment'
 const TextContainer = () => {
   const [ user, setUser ] = useState([])
   const [ loading, setLoading ] = useState(true)
-  const ENDPOINT = `https://chat.miauuapi.com/`
+  const ENDPOINT = ``
 
   useEffect(() => {
-    // const intervalId = setInterval(() => {
       getRooms()
-    // }, 5000);
-    // return () => clearInterval(intervalId)
   }, [])
 
   const getRooms = async () => {
-    await Axios.get(`https://cors-anywhere.herokuapp.com/${ENDPOINT}rooms`, {
-      headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
-      }).then(resp => {
+    await Axios.post(`https://chat-middleware.herokuapp.com`, {
+      end: "rooms"
+    } ,{
+      headers: {                  
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Authorization", 
+        "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE" ,
+        "Content-Type": "application/json;charset=UTF-8"                   
+    },
+  })
+  .then(resp => {
+      var rooms = resp.data.sort((a, b) => new Date(b.dateLastMessage) - new Date(a.dateLastMessage))
+      // rooms.sort(orderRooms)
 
-        var rooms = resp.data.sort((a, b) => new Date(b.dateLastMessage) - new Date(a.dateLastMessage))
-        // rooms.sort(orderRooms)
-
-        console.log(rooms);
+      console.log(rooms);
 
 
-        setUser(resp.data);
-        setLoading(false)
-      }).catch(error => {
-        console.log('erro1: ', error.request)
-      }
-    )
+      setUser(resp.data);
+      setLoading(false)
+    }).catch(error => {
+      console.log('erro1: ', error.request)
+    }
+  )
   }
 
   function orderRooms(a, b){

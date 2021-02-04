@@ -1,7 +1,7 @@
 {
   "name": "project_chat_application",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "axios": "^0.20.0",
     "date-fns": "^2.16.1",
