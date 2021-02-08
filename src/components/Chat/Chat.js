@@ -19,58 +19,68 @@ const Chat = ({ location }) => {
   const [messages, setMessages] = useState([]);
   const [ noChat, setNoChat ] = useState(true)
   // const ENDPOINT = 'https://chat-hom.miauuapi.com/';
-  const ENDPOINT = ``
 
-  // useEffect(() => {
-  //   const { name, room } = queryString.parse(location.search);
+  const ENDPOINT = `https://chat.miauuapi.com/`
+
+  useEffect(() => {
+    const { name, room } = queryString.parse(location.search);
     
-  //   socket = io('https://chat.miauuapi.com/', {
-  //     query: {
-  //       auth: 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0',
-  //       backoffice: true
-  //     }
-  //   })
+    socket = io(ENDPOINT, {
+      query: {
+        auth: 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0',
+        backoffice: true
+      }
+    })
     
-  //   socket.emit('join', { name, room }, (error) => {
-  //     if(error) {
-  //       setNoChat(true)
-  //     } else {
-  //       setNoChat(false)
-  //     }
-  //   });
-  //   async function getChatHistory(room){
-  //     await Axios.get(`https://chat-middleware.herokuapp.com?end=admin/room/${room}`)
-  //     .then(resp => {
-  //       setMessages(resp.data);
-  //       verifyUser(resp.data)
-  //     }).catch(error => {
-  //       console.log('erro1: ', error.request)
-  //     }
-  //     )
-  //   }
-  //   getChatHistory(room)
-  // }, [ENDPOINT, location.search]);
+    socket.emit('join', { name, room }, (error) => {
+      if(error) {
+        setNoChat(true)
+      } else {
+        setNoChat(false)
+      }
+    });
+
+    async function getChatHistory(room){
+      await Axios.get(`${ENDPOINT}admin/room/${room}`, {
+        headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
+      })
+      .then(resp => {
+
+        console.log(resp.data);
+
+        setMessages(resp.data);
+        verifyUser(resp.data)
+      }).catch(error => {
+        console.log('erro12: ', error.request)
+      }
+      )
+    }
+    getChatHistory(room)
+  }, [ENDPOINT, location.search]);
 
   
   function verifyUser(messagesRecived){
     const nameFiltred = messagesRecived.filter((element) => ( element.name !== 'miauuteam' ))
+
+    console.log(nameFiltred);
+
     setName(nameFiltred[0].name)
   }
 
-  // useEffect(() => {
-  //   socket.on('message', message => {
-  //     setMessages(messages => [ ...messages, message ]);
-  //   });
-  //   socket.on("roomData", ({ users }) => {
-  //     setUsers(users);
-  //   });
-  // }, []);
+  useEffect(() => {
+    socket.on('message', message => {
+      setMessages(messages => [ ...messages, message ]);
+    });
+    socket.on("roomData", ({ users }) => {
+      setUsers(users);
+    });
+  }, []);
 
   const sendMessage = (event) => {
     event.preventDefault();
-    // if(message) {
-    //   socket.emit('sendMessage', message, () => setMessage(''));
-    // }
+    if(message) {
+      socket.emit('sendMessage', message, () => setMessage(''));
+    }
   }
 
   return (
