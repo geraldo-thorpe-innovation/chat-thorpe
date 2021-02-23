@@ -11,7 +11,7 @@ const TextContainer = () => {
   const [ user, setUser ] = useState([])
   const [ loading, setLoading ] = useState(true)
   // const ENDPOINT = 'https://chat-hom.miauuapi.com/';
-  const ENDPOINT = `https://chat.miauuapi.com/`
+  // const ENDPOINT = `https://chat.miauuapi.com/`
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -20,15 +20,15 @@ const TextContainer = () => {
     return () => clearInterval(intervalId)
   }, [])
 
-  const getRooms = async () => {
-    await Axios.get(`${ENDPOINT}rooms`, {
+  async function getRooms(){
+    await Axios.get(`https://chat.miauuapi.com/rooms`, {
       headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
       }).then(resp => {
       var rooms = resp.data.sort((a, b) => new Date(b.dateLastMessage) - new Date(a.dateLastMessage))
       setUser(rooms);
       setLoading(false)
     }).catch(error => {
-      console.log('erro1: ', error.request)
+      console.log('Erro Text Container: ', error.request)
     }
   )
   }

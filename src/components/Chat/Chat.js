@@ -18,9 +18,9 @@ const Chat = ({ location }) => {
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [ noChat, setNoChat ] = useState(true)
-  // const ENDPOINT = 'https://chat-hom.miauuapi.com/';
+  const ENDPOINT = 'https://chat.miauuapi.com/';
 
-  const ENDPOINT = `https://chat.miauuapi.com/`
+  // const ENDPOINT = `https://chat.miauuapi.com/`
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -41,7 +41,7 @@ const Chat = ({ location }) => {
     });
 
     async function getChatHistory(room){
-      await Axios.get(`${ENDPOINT}admin/room/${room}`, {
+      await Axios.get(`https://chat.miauuapi.com/admin/room/${room}`, {
         headers: {'authorization' : 'giwXuRY4ucOqQvz2g08OhMy89KxxZrv0'}
       })
       .then(resp => {
